@@ -1,0 +1,872 @@
+\documentclass[a4paper,final]{report}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx,subfig,mathptmx,amsmath,amssymb,amsfonts,geometry,hyperref,xcolor}
+\geometry{a4paper, left=2.5cm, right=3cm, top=1.5cm, bottom=2cm} 
+\hypersetup{hidelinks}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\Huge \bfseries Rotationsvolumen\par}
+  \vspace{2cm}
+  \includegraphics[width=0.4\linewidth]{Pics/angell_logo.png}\par
+  \vspace{2cm}
+  {\Large Lev Thierbach\par}
+  \vspace{0.5cm}
+  {\Large Klasse 12a\par}
+  \vspace{0.5cm}
+  {\Large Mathematik\par}
+  \vfill
+  {\large \today\par}
+\end{titlepage}
+
+
+\tableofcontents
+
+\chapter{Definition Rotoationskörper}    
+
+Ein Rotationskörper ist ein dreidimensionaler Körper, der entsteht, wenn eine ebene Fläche oder eine Funktion um eine feste Achse rotiert. Die entstehende Figur besitzt eine Rotationssymmetrie, das bedeutet, dass sie bei einer Drehung um ihre Achse unverändert bleibt.  
+
+
+
+\section{Wie entsteht ein Rotationskörper?}
+
+Ein Rotationskörper entsteht, wenn eine Funktion oder eine begrenzte Fläche um eine feste Achse gedreht wird. Dabei beschreibt jeder Punkt der Ausgangsfigur eine Kreisbahn um die Achse. Die Menge aller solcher Punkte bildet den Rotationskörper.
+\\
+Mathematisch betrachtet wird eine Funktion \( f(x) \) im Intervall \([a, b]\) um die x-Achse gedreht. Dadurch entstehen kreisförmige Querschnitte, die senkrecht zur Rotationsachse liegen. Die Menge aller Punkte des Körpers kann durch folgende Gleichung beschrieben werden. 
+\\
+\[y^2 + z^2 = f(x)^2, \quad a \leq x \leq b\]
+\\
+Das bedeutet, dass jeder Punkt auf der ursprünglichen Kurve beim Drehen eine Kreisbahn um die Achse beschreibt. 
+Diese Kreisbahnen bilden gemeinsam den gesamten Körper.
+\\
+\cite{frassek_rotationskoerper}
+\cite{studysmarter_rotationskoerper}
+\cite{easyschule_rotationskoerper}
+
+\section{Eigenschaften von Rotationskörpern}
+
+\textbf{Rotationssymmetrie}: Der Körper bleibt bei einer Drehung um seine Achse unverändert.  \\
+\\ \textbf{Kreisförmige Querschnitte}: Jeder Schnitt senkrecht zur Rotationsachse ergibt einen Kreis.  \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Pics/Bildschirmfoto 2025-02-07 um 6.00.13 PM.png}
+    \caption{Rotationskörper}
+    \label{fig:enter-label}
+\end{figure}
+\cite{lambacher_schweizer}
+
+\chapter{Herleitung des Rotationsvolumens}
+
+\section{Näherung des Rotationsvolumens durch die Simpson-Regel und die Kepplersche Fassregel}
+
+Um das Rotationsvolumen herzuleiten, wenden wir ein numerisches Näherungsverfahren an, die Simpson-Regel und der daraus folgenden Kepplerschen Fassregel.
+
+
+\subsection{Die Simpson-Regel}
+
+Die Simpson-Regel ist eine numerische Methode zur Näherung eines Integrals. Sie beruht darauf, dass eine Funktion \( f(x) \) zwischen zwei Punkten \( a \) und \( b \) nicht durch eine Gerade, sondern durch eine Parabel angenähert wird.
+\\
+Zunächst teilen wir das Intervall \( [a,b] \) in zwei gleich große Abschnitte \( [a,m] \) und \( [m,b] \), wobei \( m = \frac{a+b}{2} \) der Mittelpunkt ist. Die Simpson-Regel liefert dann die Näherung:
+\\
+\[
+\int_a^b f(x) \, dx \approx \frac{b-a}{6} \left( f(a) + 4f(m) + f(b) \right)
+\] 
+\\
+\cite{math24_simpson} \\ \\ Diese Gewichtung (1 : 4 : 1) berücksichtigt, dass der Funktionswert in der Mitte meist einen stärkeren Einfluss hat als die Randwerte.
+\\
+\subsection{Anwendung der Simpson-Regel auf das Rotationsvolumen}
+
+Da das Rotationsvolumen durch das Integral 
+\\
+\[
+V = \pi \int_a^b [f(x)]^2 \, dx
+\]
+\\
+gegeben ist, können wir die Simpson-Regel direkt darauf anwenden. Wir erhalten die Kepplersche Fassregel:
+
+\[
+V \approx \pi \frac{b-a}{6} \left( f(a)^2 + 4 f(m)^2 + f(b)^2 \right)
+\]
+\\
+Hierbei sind: \\
+\\ \( f(a) \) der Funktionswert am linken Rand,
+\\ \( f(m) \) der Funktionswert in der Mitte,
+\\ \( f(b) \) der Funktionswert am rechten Rand.
+
+
+\newpage
+\section{Fehlerabschätzung der Kepplerschen Fassregel}
+
+Die Kepplersche Fassregel ist eine Anwendung der Simpson-Regel auf das Rotationsvolumen eines Körpers. Sie liefert eine genaue Annäherung für das Volumen, enthält aber, wie jede numerische Methode, einen Fehler. In diesem Abschnitt zeige ich, wie man diesen Fehler berechnen kann.
+
+\subsection{Fehler der Regel}
+Die Simpson-Regel für ein Integral:
+\[
+I = \int_a^b f(x) \, dx
+\]
+\\
+wird durch die Näherung:
+\\
+\[
+I \approx \frac{b-a}{6} \left( f(a) + 4f(m) + f(b) \right)
+\]
+\\
+ersetzt. Diese Näherung ist exakt für jede Funktion, die eine Parabel ist, also ein Polynom vom Grad höchstens 2. Falls die Funktion höhere Ableitungen besitzt, entsteht ein Fehler, der sich aus der Taylor-Entwicklung der Funktion ableiten lässt.
+\\
+Für eine Funktion, die eine nicht-parabolische Krümmung besitzt, wie etwa ein Polynom höheren Grades, Sinus- oder Exponentialfunktionen, ist der Fehler der Simpson-Regel durch die vierte Ableitung von \( f(x) \) gegeben:
+\\
+\[
+E_S = -\frac{(b-a)^5}{2880} f^{(4)}(\xi)
+\]
+\\
+für ein gewisses \( \xi \in (a,b) \).
+\\
+Das bedeutet:
+- Je glatter die Funktion (kleine vierte Ableitung), desto kleiner ist der Fehler.
+- Je größer das Intervall \( (b-a) \), desto größer wird der Fehler, da \( (b-a)^5 \) schnell wächst.
+
+\subsection{Anwendung auf das Rotationsvolumen}
+
+Das Volumen eines Rotationskörpers wird über das Integral
+\\
+\[
+V = \pi \int_a^b [f(x)]^2 \, dx
+\]
+\\
+berechnet. Wenn wir die Simpson-Regel darauf anwenden, setzen wir \( f(x) = [f(x)]^2 \) in die Fehlerformel ein. Die vierte Ableitung von \( f(x) \) führt zur Fehlerformel für das Rotationsvolumen:
+\\
+\[
+E_V = -\frac{(b-a)^5}{2880} \pi f^{(4)}(\xi)
+\]
+\\
+Da \( f(x) = [f(x)]^2 \), können wir die vierte Ableitung berechnen und in die Formel einsetzen.
+\newpage
+\subsection{Die Idee hinter der Kepplerschen Fassregel}
+
+Die Kepplersche Fassregel wurde von Johannes Kepler als Näherungsverfahren zur Volumenberechnung von Weinfässern entwickelt. Die Idee war, dass das Volumen eines Weinfasses durch die Kombination von Parabelstücken angenähert werden kann. Allerdings sind reale Körper nicht perfekt parabolisch geformt, da sie kleine Abweichungen haben, die von höheren Ableitungen abhängen.
+\\
+\\
+Wenn ein Weinfass beispielsweise dicker oder schmaler als eine perfekte Parabel ist, tritt ein Fehler auf. Also:
+\\
+\\
+- Wenn \( f(x) \) eine höhere Krümmung hat (hohe vierte Ableitung), ist der Fehler der Näherung größer.
+\\
+\\
+- Wenn das Intervall \( [a,b] \) zu groß ist, steigt der Fehler schnell an.
+\\
+In der Praxis wird der Fehler also umso kleiner:\\
+\\
+1. Wenn die Funktion \( f(x) \) eine möglichst geringe vierte Ableitung \\
+hat, z. B. fast parabolisch ist.\\
+\\
+2. Wenn das Intervall \( [a,b] \) klein genug gewählt wird, sodass die Näherung durch die Parabel ausreichend genau bleibt.
+\\
+\cite{hans_riegel_numerische_integration}
+\cite{ebelt_kepler_fassformel}
+\section{Annäherung durch diskrete Summen}
+
+Statt das Volumen eines Körpers, der durch die Rotation einer Funktion \( f(x) \) um die x-Achse entsteht, sofort als Integral zu schreiben, nähern wir es zunächst durch eine endliche Summe an.
+
+\begin{enumerate}
+    \item Zerlegen wir das Intervall \( [a, b] \) in \( n \) kleine Abschnitte mit der Breite:
+    
+    \[
+    \Delta x = \frac{b-a}{n}
+    \]
+    
+    \item In jedem Intervall \( [x_i, x_{i+1}] \) betrachten wir eine dünne Zylinderscheibe mit:
+    \begin{itemize}
+        \item \textbf{Dicke:} \( \Delta x \),
+        \item \textbf{Radius:} \( f(x_i) \) (Funktionswert an der Stelle \( x_i \)),
+        \item \textbf{Grundfläche:} \( A_i = \pi f(x_i)^2 \).
+    \end{itemize}
+    
+    \item Das Volumen eines solchen dünnen Zylinders ist dann:
+    
+    \[
+    \Delta V_i = \pi f(x_i)^2 \cdot \Delta x
+    \]
+    
+    \item Für \( n \) solcher Zylinder ergibt sich die Gesamtsumme als Approximation für das Volumen:
+\\    
+    \[
+    V_n \approx \sum_{i=1}^{n} \pi f(x_i)^2 \cdot \Delta x
+    \]
+\\   
+\end{enumerate}
+Diese Summe beschreibt das Volumen als eine diskrete Approximation durch eine endliche Anzahl von dünnen Zylindern.
+\\
+\section{Übergang zu immer feineren Summen}
+
+Je kleiner \( \Delta x \) wird (d.h. je größer \( n \) gewählt wird), desto genauer beschreibt diese Summe das tatsächliche Volumen. 
+\\
+\\
+Lassen wir \( n \to \infty \), so wird \( \Delta x \) infinitesimal klein: \( \Delta x \to dx \). In diesem Grenzübergang wird aus der Summe ein Integral:
+\\
+\[
+V = \lim_{n \to \infty} \sum_{i=1}^{n} \pi f(x_i)^2 \cdot \Delta x = \int_a^b \pi f(x)^2 \, dx
+\]
+\cite{frassek_rotationskoerper}
+\cite{hans_riegel_numerische_integration}
+\section{Fazit}
+
+Das Volumen eines Rotationskörpers kann durch die Summe von kleinen Zylinderscheiben approximiert werden. Wenn die Anzahl der Zylinder gegen unendlich geht und ihre Dicke gegen null, erhalten wir das exakte Volumen als Integral:
+\\
+\[
+V = \int_a^b \pi f(x)^2 \, dx
+\]
+\\
+Diese Methode zeigt, wie aus einer Summenbildung über infinitesimal kleine Zylinder die allgemeine Formel für das Rotationsvolumen entsteht.
+%%
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Pics/Bildschirmfoto 2025-02-07 um 6.00.32 PM Kopie.png}
+    \caption{Rotationsvolumen}
+    \label{fig:enter-label}
+\end{figure}
+\\
+\cite{lambacher_schweizer}
+
+\chapter{Beispiel Rechnungen}
+
+\section{Rotationsvolumen bei Polynomfunktionen}
+\section{Beispiel 1: \( f(x) = x^2 \) auf \( [-2,2] \)}
+
+\subsection{Schritt 1: Allgemeine Rotationsvolumenformel}
+Das Volumen eines Rotationskörpers um die x-Achse ist gegeben durch:
+
+\[
+V = \pi \int_a^b [f(x)]^2 \, dx
+\]
+
+\subsection{Schritt 2: Einsetzen der Funktion \( f(x) = x^2 \)}
+\[
+V = \pi \int_{-2}^{2} (x^2)^2 \, dx
+\]
+
+\[
+V = \pi \int_{-2}^{2} x^4 \, dx
+\]
+
+\subsection{Schritt 3: Berechnung des Integrals}
+Das Integral von \( x^4 \) ist:
+
+\[
+\int x^4 \, dx = \frac{x^5}{5}
+\]
+
+Einsetzen der Grenzen:
+
+\[
+V = \pi \left[ \frac{x^5}{5} \right]_{-2}^{2}
+\]
+
+\[
+V = \pi \left( \frac{2^5}{5} - \frac{(-2)^5}{5} \right)
+\]
+
+\[
+V = \pi \left( \frac{32}{5} - \frac{-32}{5} \right)
+\]
+
+\[
+V = \pi \left( \frac{32}{5} + \frac{32}{5} \right)
+\]
+
+\[
+V = \pi \times \frac{64}{5}
+\]
+
+\[
+V = \frac{64\pi}{5}
+\]
+
+\subsection{Ergebnis}
+Das Rotationsvolumen der Funktion \( f(x) = x^2 \) im Intervall \( [-2, 2] \) beträgt:
+
+\[
+V = \frac{64\pi}{5} FE
+\]
+\section{Beispiel 2: \( f(x) = (x+2)^2 \) auf \( [0,3] \)}
+
+\subsection{Schritt 1: Allgemeine Rotationsvolumenformel}
+\[
+V = \pi \int_a^b [f(x)]^2 \, dx
+\]
+
+\subsection{Schritt 2: Einsetzen von \( f(x) = (x+2)^2 \)}
+\[
+V = \pi \int_{0}^{3} \left( (x+2)^2 \right)^2 \, dx
+\]
+
+\subsection{Schritt 3: Anwendung der Binomischen Formel}
+Da hier ein doppeltes Quadrat steht, wenden wir die binomische Formel an:
+
+\[
+(a^2)^2 = a^4
+\]
+
+Setzen wir \( (x+2)^2 \) in diese Regel ein:
+
+\[
+(x+2)^4 = (x^2 + 4x + 4)^2
+\]
+
+Dadurch erhalten wir durch die binomischen Formel:
+
+\[
+(x^2 + 4x + 4)^2 = x^4 + 8x^3 + 24x^2 + 32x + 16
+\]
+
+\subsection{Schritt 4: Berechnung des Integrals}
+\[
+V = \pi \int_0^3 (x^4 + 8x^3 + 24x^2 + 32x + 16) \, dx
+\]
+
+Berechnung der Stammfunktionen:
+
+\[
+\int x^4 \, dx = \frac{x^5}{5}, \quad \int 8x^3 \, dx = 2x^4, \quad \int 24x^2 \, dx = 8x^3,
+\]
+
+\[
+\int 32x \, dx = 16x^2, \quad \int 16 \, dx = 16x
+\]
+\\
+Setzen der Grenzen \( 0 \) und \( 3 \):
+
+\[
+V = \pi \left[ \frac{x^5}{5} + 2x^4 + 8x^3 + 16x^2 + 16x \right]_0^3
+\]
+
+Für \( x = 3 \):
+
+\[
+\frac{3^5}{5} + 2(3^4) + 8(3^3) + 16(3^2) + 16(3)
+\]
+
+\[
+= \frac{243}{5} + 2(81) + 8(27) + 16(9) + 16(3)
+\]
+
+\[
+= \frac{243}{5} + 162 + 216 + 144 + 48
+\]
+
+\[
+= \frac{243}{5} + 570
+\]
+
+\[
+= \frac{243 + 2850}{5} = \frac{3093}{5}
+\]
+
+Da für \( x = 0 \) alle Terme verschwinden, bleibt:
+
+\[
+V =\frac{3093}{5} - 0
+\] 
+\subsection{Ergebnis}
+Das Rotationsvolumen der Funktion \( f(x) = (x+2)^2 \) im Intervall \( [0, 3] \) beträgt: 
+
+\[V = \frac{3093}{5} FE\]
+
+\section{Sinus Funktion}
+Beispiel: \( f(x) = \sin(x) \) auf \( [0, \pi] \)
+
+\subsection{Schritt 1: Allgemeine Rotationsvolumenformel}
+Das Volumen eines Rotationskörpers um die x-Achse ist gegeben durch:
+
+\[
+V = \pi \int_a^b [f(x)]^2 \, dx
+\]
+
+\subsection{Schritt 2: Einsetzen von \( f(x) = \sin(x) \)}
+\[
+V = \pi \int_0^\pi \sin^2(x) \, dx
+\]
+
+\subsection{Schritt 3: Vereinfachung des Integrals}
+Um das Integral von \( \sin^2(x) \) zu berechnen, verwenden wir die Identität:
+
+\[
+\sin^2(x) = \frac{1 - \cos(2x)}{2}
+\]
+
+Somit wird das Integral:
+
+\[
+V = \pi \int_0^\pi \frac{1 - \cos(2x)}{2} \, dx
+\]
+
+\[
+V = \frac{\pi}{2} \int_0^\pi (1 - \cos(2x)) \, dx
+\]
+
+\subsection{Schritt 4: Berechnung der Integrale}
+Berechnen wir die Stammfunktionen:
+
+\[
+\int 1 \, dx = x, \quad \int \cos(2x) \, dx = \frac{\sin(2x)}{2}
+\]
+
+Einsetzen in die Integralgrenzen:
+
+\[
+V = \frac{\pi}{2} \left[ x - \frac{\sin(2x)}{2} \right]_0^\pi
+\]
+
+Für \( x = \pi \):
+
+\[
+\pi - \frac{\sin(2\pi)}{2} = \pi - 0 = \pi
+\]
+
+Für \( x = 0 \):
+
+\[
+0 - \frac{\sin(0)}{2} = 0
+\]
+
+Daher:
+
+\[
+V = \frac{\pi}{2} (\pi - 0) = \frac{\pi^2}{2}
+\]
+
+\subsection{Ergebnis}
+Das Rotationsvolumen der Funktion \( f(x) = \sin(x) \) im Intervall \( [0, \pi] \) beträgt:
+
+\[
+V = \frac{\pi^2}{2} FE
+\]
+\cite{lambacher_schweizer}
+
+\section{Cosinus Funktion}
+Beispiel: \( f(x) = \cos(x) \) auf \( [0, \pi] \)
+
+\subsection{Schritt 1: Allgemeine Rotationsvolumenformel}
+Das Volumen eines Rotationskörpers um die x-Achse ist gegeben durch:
+
+\[
+V = \pi \int_a^b [f(x)]^2 \, dx
+\]
+
+\subsection{Schritt 2: Einsetzen von \( f(x) = \cos(x) \)}
+\[
+V = \pi \int_0^\pi \cos^2(x) \, dx
+\]
+
+\subsection{Schritt 3: Vereinfachung des Integrals}
+Um das Integral von \( \cos^2(x) \) zu berechnen, verwenden wir die Identität:
+
+\[
+\cos^2(x) = \frac{1 + \cos(2x)}{2}
+\]
+
+Somit wird das Integral:
+
+\[
+V = \pi \int_0^\pi \frac{1 + \cos(2x)}{2} \, dx
+\]
+
+\[
+V = \frac{\pi}{2} \int_0^\pi (1 + \cos(2x)) \, dx
+\]
+
+\subsection{Schritt 4: Berechnung der Integrale}
+Berechnen wir die Stammfunktionen:
+
+\[
+\int 1 \, dx = x, \quad \int \cos(2x) \, dx = \frac{\sin(2x)}{2}
+\]
+\\
+\\
+\\
+Einsetzen in die Integralgrenzen:
+
+\[
+V = \frac{\pi}{2} \left[ x + \frac{\sin(2x)}{2} \right]_0^\pi
+\]
+
+Für \( x = \pi \):
+
+\[
+\pi + \frac{\sin(2\pi)}{2} = \pi + 0 = \pi
+\]
+
+Für \( x = 0 \):
+
+\[
+0 + \frac{\sin(0)}{2} = 0
+\]
+
+Daher:
+
+\[
+V = \frac{\pi}{2} (\pi - 0) = \frac{\pi^2}{2}
+\]
+
+\subsection{Ergebnis}
+Das Rotationsvolumen der Funktion \( f(x) = \cos(x) \) im Intervall \( [0, \pi] \) beträgt:
+
+\[
+V = \frac{\pi^2}{2} FE
+\]
+\cite{lambacher_schweizer}
+\section{Exponentialfunktion}
+\section{Beispiel: \( f(x) = 2e^{3x} \) auf \( [0,1] \)}
+
+\subsection{Schritt 1: Allgemeine Rotationsvolumenformel}
+Das Volumen eines Rotationskörpers um die x-Achse ist gegeben durch:
+
+\[
+V = \pi \int_a^b [f(x)]^2 \, dx
+\]
+
+\subsection{Schritt 2: Einsetzen von \( f(x) = 2e^{3x} \)}
+\[
+V = \pi \int_0^1 (2e^{3x})^2 \, dx
+\]
+
+\[
+V = \pi \int_0^1 4e^{6x} \, dx
+\]
+
+\subsection{Schritt 3: Berechnung des Integrals}
+Das Integral von \( 4e^{6x} \) ist:
+
+\[
+\int 4e^{6x} \, dx = \frac{4}{6} e^{6x} = \frac{2}{3} e^{6x}
+\]
+Einsetzen der Grenzen:
+
+\[
+V = \pi \left[ \frac{2}{3} e^{6x} \right]_0^1
+\]
+
+Für \( x = 1 \):
+
+\[
+\frac{2}{3} e^{6} - \frac{2}{3} e^{0}
+\]
+
+\[
+= \frac{2}{3} e^{6} - \frac{2}{3}
+\]
+
+\[
+V = \pi \left( \frac{2}{3} e^{6} - \frac{2}{3} \right)
+\]
+
+\subsection{Ergebnis}
+Das Rotationsvolumen der Funktion \( f(x) = 2e^{3x} \) im Intervall \( [0,1] \) beträgt:
+
+\[
+V = \frac{2\pi}{3} (e^6 - 1), V \approx 842.84FE
+\]
+
+\chapter{Rotation eiener Fläche zwischen zwei Graphen}
+
+\section{Herleitung des Rotationsvolumens einer Fläche zwischen zwei Graphen}
+
+Wenn eine Fläche zwischen zwei Funktionen \( f(x) \) und \( g(x) \) um die x-Achse rotiert, entsteht ein Rotationskörper mit einem Hohlraum. Dieser Körper kann als doppelwandiger Zylinder betrachtet werden, wobei \( f(x) \) die äußere Begrenzung und \( g(x) \) die innere Begrenzung beschreibt.
+\\
+\\
+Um sein Volumen zu berechnen, nutzen wir die Methode der Differenz der Volumina. Dabei berechnen wir zuerst das Volumen, das durch die äußere Funktion \( f(x) \) entsteht, und subtrahieren anschließend das Volumen, das durch die innere Funktion \( g(x) \) entsteht.
+\\
+\subsection{1. Allgemeine Formel für das Rotationsvolumen}
+Das Volumen eines Rotationskörpers um die x-Achse wird mit dem Rotationsintegral berechnet:
+\\
+\[
+V = \pi \int_a^b [f(x)]^2 \, dx
+\]
+\\
+Falls jedoch die Fläche zwischen zwei Funktionen \( f(x) \) (obere Funktion) und \( g(x) \) (untere Funktion) liegt, dann beschreibt \( f(x) \) den äußeren Rand und \( g(x) \) den inneren Rand des Körpers.
+\\
+Die Kreisflächen an jeder x-Position haben folgende Radien:
+\\
+\\- Äußerer Radius: \( R = f(x) \) → erzeugt das größere Volumen
+\\
+\\- Innerer Radius: \( r = g(x) \) → erzeugt das kleinere Volumen (Hohlraum)
+\\
+\\
+Das Volumen eines infinitesimalen Zylinders (dünne Scheibe) ist gegeben durch:
+\\
+\[
+dV = \pi (R^2 - r^2) dx = \pi \left( [f(x)]^2 - [g(x)]^2 \right) dx
+\]
+\\
+Das gesamte Volumen ergibt sich dann als Integral über das Intervall \( [a, b] \):
+\\
+\[
+V = \int_a^b \pi \left( [f(x)]^2 - [g(x)]^2 \right) \, dx
+\]
+\\
+\subsection{2. Herleitung durch Differenz der Volumina}
+\subsubsection{2.1 Zerlegung in dünne Schichten}
+Der Körper kann als eine Abfolge unendlich vieler dünner Zylinderscheiben betrachtet werden, die jeweils eine sehr kleine Dicke \( dx \) besitzen.
+\\
+Jede dieser Scheiben hat:\\
+\\
+Eine Grundfläche: \( \pi R^2 - \pi r^2 \), da die Fläche des äußeren Kreises die Fläche des inneren Kreises enthält.
+\\
+\\
+\\Eine Höhe: \( dx \), da jede Scheibe eine unendlich kleine Dicke hat.
+\\
+Das Volumen einer einzelnen Scheibe ist:
+\\
+\[
+dV = \pi (R^2 - r^2) dx = \pi \left( [f(x)]^2 - [g(x)]^2 \right) dx
+\]
+\\
+\subsubsection{2.2 Summation über das gesamte Intervall}
+Um das gesamte Volumen zu erhalten, summieren wir diese unendlich dünnen Scheiben über das gesamte Intervall \( [a,b] \). Dies geschieht durch Integration:
+\\
+\[
+V = \lim_{n \to \infty} \sum_{i=1}^{n} \pi ([f(x)]^2 - [g(x)]^2) \cdot \Delta x = \int_a^b \pi \left( [f(x)]^2 - [g(x)]^2 \right) \, dx
+\]
+\\
+\\
+\\
+\\
+\\
+\\
+\subsection{3. Interpretation der Formel}
+Falls \( g(x) = 0 \), reduziert sich die Formel auf das bekannte Rotationsvolumen für eine einzelne Funktion:
+\\
+  \[
+  V = \pi \int_a^b [f(x)]^2 \, dx
+  \]
+\\
+Falls \( f(x) = g(x) \), ergibt sich kein Volumen, da die beiden Funktionen identisch sind:
+\\
+  \[
+  V = 0
+  \]
+\\
+Falls \( f(x) \) und \( g(x) \) sehr nah beieinander liegen, ist das Volumen sehr klein, was bedeutet, dass der Körper nur eine dünne Wand besitzt.
+\\
+\cite{studysmarter_rotationskoerper}
+\cite{lambacher_schweizer}
+
+\section{Beispiel Rechnungen}
+
+\section{Beispiel:\( f(x) = x^2 + 2 \), \( g(x) = 2x^3 \) auf \( [0,1] \)}
+
+\subsection{Schritt 1: Allgemeine Rotationsvolumenformel}
+Das Volumen eines Rotationskörpers, der durch die Fläche zwischen zwei Funktionen entsteht, wird durch die Formel:
+
+\[
+V = \pi \int_a^b [f(x)]^2 - [g(x)]^2 \, dx
+\]
+\\
+berechnet.
+\\
+\subsection{Schritt 2: Einsetzen von \( f(x) = x^2 + 2 \), \( g(x) = 2x^3 \)}
+\[
+V = \pi \int_0^1 (x^2 + 2)^2 - (2x^3)^2  \, dx
+\]
+
+\[
+V = \pi \int_0^1 x^4 + 4x^2 + 4 - 4x^6 \, dx
+\]
+
+\subsection{Schritt 3: Berechnung des Integrals}
+Berechnen wir das Integral der einzelnen Terme:
+
+\[
+\int x^4 \, dx = \frac{x^5}{5}, \quad \int 4x^2 \, dx = \frac{4x^3}{3}, \quad \int 4 \, dx = 4x, \quad \int 4x^6 \, dx = \frac{4x^7}{7}
+\]
+
+Einsetzen der Grenzen:
+
+\[
+V = \pi \left[ \frac{x^5}{5} + \frac{4x^3}{3} + 4x - \frac{4x^7}{7} \right]_0^1
+\]
+
+Für \( x = 1 \):
+
+\[
+V = \pi \left( \frac{1}{5} + \frac{4}{3} + 4 - \frac{4}{7} \right)
+\]
+
+\[
+V = \pi \left( \frac{21}{105} + \frac{140}{105} + \frac{420}{105} - \frac{60}{105} \right)
+\]
+
+\[
+V = \pi \left( \frac{521}{105} \right)
+\]
+
+\subsection{Ergebnis}
+Das Rotationsvolumen der Fläche zwischen den Funktionen \( f(x) = x^2 + 2 \) und \( g(x) = 2x^3 \) im Intervall \( [0,1] \) beträgt:
+
+\[
+V = \frac{521\pi}{105}, \quad V \approx 15.59
+\]
+\chapter{Anwendungen in der Realen Welt}
+Berechnung vom Rotationsvolumens des Feierling Krugs
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Pics/hausbrauerei_feierling.jpg}
+    \caption{Feierling Krug}
+    \label{fig:enter-label}
+\end{figure}
+\\
+\cite{feierling_krug_bild}
+
+\section{Geometrische Modellierung des Feierling Krugs}
+Der Krug wird als Kegelstumpf mit einem oberen zylindrischen Hals modelliert.  Die gegebenen Maße sind:
+
+\subsection{1. Gegebene Werte}
+\begin{itemize}
+    \item \text{Gesamthöhe}: \( h_{\text{ges}} = 34 \, \text{cm} \)
+    \item \text{Höhe des oberen Zylinders}: \( h_1 = 3.5 \, \text{cm} \)
+    \item \text{Höhe des konischen Bereichs}:  
+          \[
+          h_{\text{kon}} = h_{\text{ges}} - h_1 = 34 - 3.5 = 30.5 \, \text{cm}
+          \]
+    \item \text{Innenradius unten}: \( r_{\text{innen,unten}} = 6.85 \, \text{cm} \)
+    \item \text{Innenradius oben}: \( r_{\text{innen,oben}} = 1.93 \, \text{cm} \)
+    \item \text{Außenradius oben}: \( r_{\text{außen,oben}} = 2.43 \, \text{cm} \)
+\end{itemize}
+
+\section{Herleitung der zu integrierenden Funktion}
+
+Da der Hauptkörper des Krugs ein \text{Kegelstumpf} ist, verläuft der Radius linear entlang der Höhe. Somit lautet die Radialfunktion \( f(x) \):
+
+\[
+f(x) = m x + b
+\]
+
+\subsection{1. Bestimmung der Steigung \( m \)}
+Die Steigung \( m \) ergibt sich aus:
+
+\[
+m = \frac{r_{\text{innen,oben}} - r_{\text{innen,unten}}}{h_{\text{kon}}}
+\]
+
+Einsetzen der Werte:
+\[
+m = \frac{1.93 - 6.85}{30.5} = \frac{-4.92}{30.5} \approx -0.1613
+\]
+
+\subsection{2. Bestimmung des y-Achsenabschnitts \( b \)}
+Der y-Achsenabschnitt ist der Radius unten:
+\[
+b = r_{\text{innen,unten}} = 6.85
+\]
+
+\subsection{3. Finale Funktion}
+
+\[
+f(x) = -0.1613 x + 6.85
+\]
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Pics/Bildschirmfoto 2025-02-18 um 2.04.58 PM.png}
+\end{figure}
+
+\section{Integral zur Berechnung des Volumens}
+
+Das Volumen eines Rotationskörpers wird berechnet mit der Formel:
+\[
+V = \pi \int_a^b [f(x)]^2 \, dx
+\]
+
+\subsection{Errechnung des Integrals von 0.5 bis 30.5 mit \( f(x) \)}
+Einsetzen von \( f(x) = -0.1613x + 6.85 \):
+
+\[
+V = \pi \int_{0.5}^{30.5} \left(-0.1613x + 6.85\right)^2 \, dx
+\]
+
+\subsection{2. Vereinfachung des Quadrats}
+Das Quadrat der Funktion ergibt:
+
+\[
+\left(-0.1613x + 6.85\right)^2 = 0.02602x^2 - 2.2116x + 46.9925
+\]
+
+Somit wird das Integral:
+
+\[
+V = \pi \int_{0.5}^{30.5} \left( 0.02602x^2 - 2.2116x + 46.9925 \right) dx
+\]
+
+\subsection{3. Berechnung der Stammfunktionen}
+
+Die Stammfunktionen der einzelnen Terme sind:
+
+\[
+\int 0.02602x^2 \, dx = 0.00867 x^3, \quad \int -2.2116x \, dx = -1.1049 x^2, \quad \int 46.9925 \, dx = 46.9925 x
+\]
+
+Die vollständige Stammfunktion lautet:
+
+\[
+F(x) = 0.00867 x^3 - 1.1049 x^2 + 46.9925 x
+\]
+
+Somit ergibt sich das Volumen:
+
+\[
+V = \left[ 0.00867 x^3 - 1.1049 x^2 + 46.9925 x \right]_{0.5}^{30.5}
+\]
+
+\subsection{4. Einsetzen der Grenzen}
+
+Für \( x = 30.5 \):
+
+\[
+0.00867 \cdot (30.5)^3 - 1.1049 \cdot (30.5)^2 + 46.9925 \cdot 30.5
+\]
+
+\[
+\approx 1969.72
+\]
+
+Für \( x = 0.5 \):
+
+\[
+0.00867 \cdot (0.5)^3 - 1.1049 \cdot (0.5)^2 + 46.9925 \cdot 0.5
+\]
+
+\[
+\approx 2.53
+\]
+
+Die Differenz ist:
+
+\[
+1969.72 - 2.53 = 1967.19
+\]
+
+\subsection{5. Endgültiges Volumen}
+
+\[
+V \approx 1967.19 \, \text{cm}^3
+\]
+
+\section{Ergebnis}
+
+Das nutzbare Rotationsvolumen des Krugs beträgt:
+
+\[
+V \approx 1967.19 \, \text{cm}^3 \, \approx 1.97 \, \text{Liter}.
+\]\\ \\
+Das berechnete Volumen beträgt etwa 1.97 Liter, während das auf dem Krug angegebene Volumen 2 Liter beträgt. Die leichte Abweichung könnte darauf zurückzuführen sein, dass die Wandstärke nicht explizit in die Modellierung einbezogen wurde, was zu einer Unterschätzung des tatsächlichen Fassungsvermögens führen kann.\\
+\cite{geogebra3d}
+
+%%
+\bibliographystyle{plain}
+\bibliography{Quellen.bib}      
+\end{document}
